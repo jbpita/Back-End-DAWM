@@ -8,44 +8,30 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-     await queryInterface.createTable('metodopagos', {
+     await queryInterface.createTable('metodospagos', {
       id_metodo: {
         autoIncrement: true,
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true
       },
       tipo_pago: {
-        type: DataTypes.STRING(50),
+        type: Sequelize.STRING(50),
         allowNull: true
       },
       cvv: {
-        type: DataTypes.STRING(3),
+        type: Sequelize.STRING(3),
         allowNull: true
       },
       num_tarjeta: {
-        type: DataTypes.STRING(20),
+        type: Sequelize.STRING(20),
         allowNull: true
       },
       tiempo_expiracion: {
-        type: DataTypes.DATEONLY,
+        type: Sequelize.DATEONLY,
         allowNull: true
       }
-    }, {
-      sequelize,
-      tableName: 'metodospagos',
-      timestamps: false,
-      indexes: [
-        {
-          name: "PRIMARY",
-          unique: true,
-          using: "BTREE",
-          fields: [
-            { name: "id_metodo" },
-          ]
-        },
-      ]
-    });
+    }, );
   },
 
   down: async (queryInterface, Sequelize) => {
