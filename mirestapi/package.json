@@ -13,6 +13,7 @@
     "express": "^4.17.2",
     "morgan": "^1.10.0",
     "sequelize": "^6.12.5",
+    "sequelize-auto-migrations": "^1.0.3",
     "sequelize-cli": "^6.3.0"
   },
   "devDependencies": {
