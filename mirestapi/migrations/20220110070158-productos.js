@@ -31,6 +31,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: true
       },
+      src:{
+        type: Sequelize.STRING(150),
+        allowNull: true
+      },
       id_marca: {
         type: Sequelize.INTEGER,
         allowNull: true,
@@ -47,7 +51,7 @@ module.exports = {
      * Add reverting commands here.
      *
      * Example:
-     * await queryInterface.dropTable('users');
      */
+     await queryInterface.dropTable('productos');    
   }
 };

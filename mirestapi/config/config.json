@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "Simba1005",
-    "database": "batetizate",
+    "password": "root",
+    "database": "baterizate",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },

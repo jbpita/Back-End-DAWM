@@ -34,6 +34,7 @@ module.exports = {
         id_metodo: {
           type: Sequelize.INTEGER,
           allowNull: true,
+          unique:true,
           references: {
             model: 'metodospagos',
             key: 'id_metodo'
@@ -50,5 +51,6 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
+     await queryInterface.dropTable('compras');
   }
 };

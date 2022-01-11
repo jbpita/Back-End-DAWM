@@ -15,6 +15,10 @@ module.exports = {
         allowNull: false,
         primaryKey: true
       },
+      nombre: {
+        type: Sequelize.STRING(50),
+        allowNull: true
+      },
       descripcion: {
         type: Sequelize.STRING(150),
         allowNull: true
@@ -33,5 +37,6 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
+    await queryInterface.dropTable('marcas');
   }
 };
