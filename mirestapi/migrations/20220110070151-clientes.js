@@ -2,6 +2,8 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
+
+    
     /**
      * Add altering commands here.
      *
@@ -11,57 +13,46 @@ module.exports = {
      await queryInterface.createTable('clientes', {
       id_cliente: {
         autoIncrement: true,
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true
       },
       cedula: {
-        type: DataTypes.STRING(10),
+        type: Sequelize.STRING(10),
         allowNull: true
       },
       nombre: {
-        type: DataTypes.STRING(50),
+        type: Sequelize.STRING(50),
         allowNull: true
       },
       apellido: {
-        type: DataTypes.STRING(50),
+        type: Sequelize.STRING(50),
         allowNull: true
       },
       correo: {
-        type: DataTypes.STRING(100),
+        type: Sequelize.STRING(100),
         allowNull: true
       },
       direccion: {
-        type: DataTypes.STRING(10),
+        type: Sequelize.STRING(10),
         allowNull: true
       },
       telefono: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: true
       },
       fechaNacimiento: {
-        type: DataTypes.DATE,
+        type: Sequelize.DATE,
         allowNull: true
       }
-    }, {
-      sequelize,
-      tableName: 'clientes',
-      timestamps: false,
-      indexes: [
-        {
-          name: "PRIMARY",
-          unique: true,
-          using: "BTREE",
-          fields: [
-            { name: "id_cliente" },
-          ]
-        },
-      ]
-    });
+    },);
   },
 
   down: async (queryInterface, Sequelize) => {
+
     /**
+     * 
+     * 
      * Add reverting commands here.
      *
      * Example:
