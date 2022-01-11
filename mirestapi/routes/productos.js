@@ -28,6 +28,7 @@ router.post('/', async (req , res , next) => {
     let precio = req.body.precio;
     let detalle = req.body.detalle;
     let stock = req.body.stock;
+    let src = req.body.src;
     let id_marca = req.body.id_marca;
 
     try{
@@ -43,9 +44,10 @@ router.post('/', async (req , res , next) => {
             precio : precio,
             detalle: detalle,
             stock : stock,
+            src : src,
             id_marca : id_marca
         },
-        {   fields : ['nombre' , 'precio' , 'detalle' , 'stock' , 'id_marca'] }
+        {   fields : ['nombre' , 'precio' , 'detalle' , 'stock' , 'src' , 'id_marca'] }
         );
 
         console.log('producto: '  , producto);

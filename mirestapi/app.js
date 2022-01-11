@@ -5,6 +5,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var productosRouter = require('./routes/productos');
+var marcasRouter = require('./rotes/marcas');
 var cors = require('cors');
 
 var app = express();
@@ -19,6 +20,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/productos', productosRouter);
+app.use('/marcas' , marcasRouter); 
 
 
 module.exports = app;
