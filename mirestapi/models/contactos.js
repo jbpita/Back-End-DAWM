@@ -8,11 +8,11 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true
     },
     asunto: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING(250),
       allowNull: true
     },
     detalle: {
-      type: DataTypes.STRING(500),
+      type: DataTypes.STRING,
       allowNull: true
     },
     fechaNacimiento: {

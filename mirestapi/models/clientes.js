@@ -12,19 +12,19 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     nombre: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING(250),
       allowNull: true
     },
     apellido: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING(250),
       allowNull: true
     },
     correo: {
-      type: DataTypes.STRING(100),
+      type: DataTypes.STRING(150),
       allowNull: true
     },
     direccion: {
-      type: DataTypes.STRING(10),
+      type: DataTypes.STRING(400),
       allowNull: true
     },
     telefono: {

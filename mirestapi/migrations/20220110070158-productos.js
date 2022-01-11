@@ -16,15 +16,15 @@ module.exports = {
         primaryKey: true
       },
       nombre: {
-        type: Sequelize.STRING(50),
+        type: Sequelize.STRING(200),
         allowNull: true
       },
       precio: {
-        type: Sequelize.DECIMAL(10,0),
+        type: Sequelize.FLOAT,
         allowNull: true
       },
       detalle: {
-        type: Sequelize.STRING(500),
+        type: Sequelize.STRING,
         allowNull: true
       },
       stock: {
@@ -32,7 +32,7 @@ module.exports = {
         allowNull: true
       },
       src:{
-        type: Sequelize.STRING(150),
+        type: Sequelize.STRING,
         allowNull: true
       },
       id_marca: {

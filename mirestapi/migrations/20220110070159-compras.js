@@ -20,7 +20,7 @@ module.exports = {
           allowNull: true
         },
         total: {
-          type: Sequelize.DECIMAL(10,0),
+          type: Sequelize.FLOAT,
           allowNull: true
         },
         id_cliente: {

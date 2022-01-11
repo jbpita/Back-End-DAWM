@@ -16,11 +16,11 @@ module.exports = {
         primaryKey: true
       },
       asunto: {
-        type: Sequelize.STRING(50),
+        type: Sequelize.STRING(250),
         allowNull: true
       },
       detalle: {
-        type: Sequelize.STRING(500),
+        type: Sequelize.STRING,
         allowNull: true
       },
       fechaNacimiento: {

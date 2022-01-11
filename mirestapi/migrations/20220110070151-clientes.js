@@ -22,19 +22,19 @@ module.exports = {
         allowNull: true
       },
       nombre: {
-        type: Sequelize.STRING(50),
+        type: Sequelize.STRING(250),
         allowNull: true
       },
       apellido: {
-        type: Sequelize.STRING(50),
+        type: Sequelize.STRING(250),
         allowNull: true
       },
       correo: {
-        type: Sequelize.STRING(100),
+        type: Sequelize.STRING(150),
         allowNull: true
       },
       direccion: {
-        type: Sequelize.STRING(10),
+        type: Sequelize.STRING(400),
         allowNull: true
       },
       telefono: {

@@ -16,15 +16,15 @@ module.exports = {
         primaryKey: true
       },
       nombre: {
-        type: Sequelize.STRING(50),
+        type: Sequelize.STRING(200),
         allowNull: true
       },
       descripcion: {
-        type: Sequelize.STRING(150),
+        type: Sequelize.STRING,
         allowNull: true
       },
       src: {
-        type: Sequelize.STRING(150),
+        type: Sequelize.STRING,
         allowNull: true
       }
     }, );

@@ -8,15 +8,15 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true
     },
     nombre: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING(200),
       allowNull: true
     },
     precio: {
-      type: DataTypes.DECIMAL(10,0),
+      type: DataTypes.FLOAT,
       allowNull: true
     },
     detalle: {
-      type: DataTypes.STRING(500),
+      type: DataTypes.STRING,
       allowNull: true
     },
     stock: {
@@ -24,7 +24,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     src:{
-      type: DataTypes.STRING(150),
+      type: DataTypes.STRING,
       allowNull: true
     },
     id_marca: {
