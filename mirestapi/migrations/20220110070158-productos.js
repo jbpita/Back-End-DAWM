@@ -37,6 +37,7 @@ module.exports = {
       },
       id_marca: {
         type: Sequelize.INTEGER,
+        onDelete: "CASCADE",
         allowNull: true,
         references: {
           model: 'marcas',

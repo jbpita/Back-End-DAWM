@@ -16,18 +16,18 @@ function initModels(sequelize) {
   var metodospagos = _metodospagos(sequelize, DataTypes);
   var productos = _productos(sequelize, DataTypes);
 
-  compras.belongsTo(clientes, { as: "id_cliente_cliente", foreignKey: "id_cliente"});
-  clientes.hasMany(compras, { as: "compras", foreignKey: "id_cliente"});
-  contactos.belongsTo(clientes, { as: "id_cliente_cliente", foreignKey: "id_cliente"});
-  clientes.hasMany(contactos, { as: "contactos", foreignKey: "id_cliente"});
-  detallecompras.belongsTo(compras, { as: "id_compra_compra", foreignKey: "id_compra"});
-  compras.hasMany(detallecompras, { as: "detallecompras", foreignKey: "id_compra"});
-  productos.belongsTo(marcas, { as: "id_marca_marca", foreignKey: "id_marca"});
-  marcas.hasMany(productos, { as: "productos", foreignKey: "id_marca"});
-  compras.belongsTo(metodospagos, { as: "id_metodo_metodospago", foreignKey: "id_metodo"});
-  metodospagos.hasMany(compras, { as: "compras", foreignKey: "id_metodo"});
-  detallecompras.belongsTo(productos, { as: "id_producto_producto", foreignKey: "id_producto"});
-  productos.hasMany(detallecompras, { as: "detallecompras", foreignKey: "id_producto"});
+  compras.belongsTo(clientes, { as: "id_cliente_cliente", foreignKey: "id_cliente",onDelete: 'cascade', hooks: true});
+  clientes.hasMany(compras, { as: "compras", foreignKey: "id_cliente", onDelete: 'cascade', hooks: true});
+  contactos.belongsTo(clientes, { as: "id_cliente_cliente", foreignKey: "id_cliente",onDelete: 'cascade', hooks: true});
+  clientes.hasMany(contactos, { as: "contactos", foreignKey: "id_cliente",onDelete: 'cascade', hooks: true});
+  detallecompras.belongsTo(compras, { as: "id_compra_compra", foreignKey: "id_compra",onDelete: 'cascade', hooks: true});
+  compras.hasMany(detallecompras, { as: "detallecompras", foreignKey: "id_compra",onDelete: 'cascade', hooks: true});
+  productos.belongsTo(marcas, { as: "id_marca_marca", foreignKey: "id_marca",onDelete: 'cascade', hooks: true});
+  marcas.hasMany(productos, { as: "productos", foreignKey: "id_marca", onDelete: 'cascade', hooks: true});
+  compras.belongsTo(metodospagos, { as: "id_metodo_metodospago", foreignKey: "id_metodo",onDelete: 'cascade', hooks: true});
+  metodospagos.hasMany(compras, { as: "compras", foreignKey: "id_metodo",onDelete: 'cascade', hooks: true});
+  detallecompras.belongsTo(productos, { as: "id_producto_producto", foreignKey: "id_producto",onDelete: 'cascade', hooks: true});
+  productos.hasMany(detallecompras, { as: "detallecompras", foreignKey: "id_producto", onDelete: 'cascade', hooks: true});
 
   return {
     clientes,
