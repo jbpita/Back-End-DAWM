@@ -44,12 +44,12 @@ router.post('/' , async (req , res , next) => {
             where: {id_cliente : id_cliente}
         });
 
-        let id_metodo = await models.metodospagos.findAll({
+        let metodo = await models.metodospagos.findAll({
             attributes: { exclude: ["updatedAt"] },
             where: {id_metodo : id_metodo}
         });
 
-        if(id_cliente > 0 && id_metodo > 0){
+        if(cliente.length > 0 && metodo.length > 0){
             let compra = await models.compras.create({
                 fecha_compra : fecha_compra,
                 total : total,
@@ -73,3 +73,5 @@ router.post('/' , async (req , res , next) => {
         res.status(400).send(error);
     }
 });
+
+module.exports = router;

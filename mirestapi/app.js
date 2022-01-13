@@ -6,6 +6,11 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var productosRouter = require('./routes/productos');
 var marcasRouter = require('./routes/marcas');
+var comprasRouter = require('./routes/compras');
+var detalleComprasRouter = require('./routes/detallecompra');
+var clienteRouter = require('./routes/cliente');
+var metodosPagosRouter = require('./routes/metodospagos');
+
 var cors = require('cors');
 
 var app = express();
@@ -21,6 +26,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/productos', productosRouter);
 app.use('/marcas' , marcasRouter); 
+app.use('/compras' , comprasRouter);
+app.use('/clientes' , clienteRouter);
+app.use('/detallecompras' , detalleComprasRouter);
+app.use('/metodospagos' , metodosPagosRouter);
 
 
 module.exports = app;
