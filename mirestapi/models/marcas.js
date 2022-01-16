@@ -12,11 +12,11 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     descripcion: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     src: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(255),
       allowNull: true
     }
   }, {

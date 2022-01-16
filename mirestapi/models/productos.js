@@ -16,15 +16,15 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     detalle: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     stock: {
       type: DataTypes.INTEGER,
       allowNull: true
     },
-    src:{
-      type: DataTypes.STRING,
+    src: {
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     id_marca: {

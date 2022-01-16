@@ -26,11 +26,11 @@ module.exports = function(sequelize, DataTypes) {
     id_metodo: {
       type: DataTypes.INTEGER,
       allowNull: true,
-      unique: true,
       references: {
         model: 'metodospagos',
         key: 'id_metodo'
-      }
+      },
+      unique: "compras_ibfk_2"
     }
   }, {
     sequelize,
@@ -46,17 +46,18 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
+        name: "id_metodo",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "id_metodo" },
+        ]
+      },
+      {
         name: "id_cliente",
         using: "BTREE",
         fields: [
           { name: "id_cliente" },
-        ]
-      },
-      {
-        name: "id_metodo",
-        using: "BTREE",
-        fields: [
-          { name: "id_metodo" },
         ]
       },
     ]

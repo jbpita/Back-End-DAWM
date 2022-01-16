@@ -19,9 +19,14 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(250),
       allowNull: true
     },
-    correo: {
-      type: DataTypes.STRING(150),
-      allowNull: true
+    id_usuario: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'usuarios',
+        key: 'id_usuario'
+      },
+      unique: "clientes_ibfk_1"
     },
     direccion: {
       type: DataTypes.STRING(400),
@@ -46,6 +51,14 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "id_cliente" },
+        ]
+      },
+      {
+        name: "id_usuario",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "id_usuario" },
         ]
       },
     ]

@@ -29,9 +29,14 @@ module.exports = {
         type: Sequelize.STRING(250),
         allowNull: true
       },
-      correo: {
-        type: Sequelize.STRING(150),
-        allowNull: true
+      id_usuario: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        unique: true,
+        references: {
+          model: 'usuarios',
+          key: 'id_usuario'
+        }
       },
       direccion: {
         type: Sequelize.STRING(400),

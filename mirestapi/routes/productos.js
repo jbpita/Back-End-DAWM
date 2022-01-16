@@ -8,9 +8,10 @@ const initModels = require('../models/init-models');
 
 
 var models= initModels(Sequelize)
+const middlewares = require('../midleware/midleware')
 
 /* GET home page. */
-router.get('/', (req, res, next) => {
+router.get('/',middlewares.checkToken, (req, res, next) => {
     models.productos.findAll({ 
         attributes: { exclude: ["updatedAt"] }
     })

@@ -6,6 +6,7 @@ var _detallecompras = require("./detallecompras");
 var _marcas = require("./marcas");
 var _metodospagos = require("./metodospagos");
 var _productos = require("./productos");
+var _usuarios = require("./usuarios");
 
 function initModels(sequelize) {
   var clientes = _clientes(sequelize, DataTypes);
@@ -15,6 +16,7 @@ function initModels(sequelize) {
   var marcas = _marcas(sequelize, DataTypes);
   var metodospagos = _metodospagos(sequelize, DataTypes);
   var productos = _productos(sequelize, DataTypes);
+  var usuarios = _usuarios(sequelize, DataTypes);
 
   compras.belongsTo(clientes, { as: "id_cliente_cliente", foreignKey: "id_cliente"});
   clientes.hasMany(compras, { as: "compras", foreignKey: "id_cliente"});
@@ -25,9 +27,11 @@ function initModels(sequelize) {
   productos.belongsTo(marcas, { as: "id_marca_marca", foreignKey: "id_marca"});
   marcas.hasMany(productos, { as: "productos", foreignKey: "id_marca"});
   compras.belongsTo(metodospagos, { as: "id_metodo_metodospago", foreignKey: "id_metodo"});
-  metodospagos.hasMany(compras, { as: "compras", foreignKey: "id_metodo"});
+  metodospagos.hasOne(compras, { as: "compra", foreignKey: "id_metodo"});
   detallecompras.belongsTo(productos, { as: "id_producto_producto", foreignKey: "id_producto"});
   productos.hasMany(detallecompras, { as: "detallecompras", foreignKey: "id_producto"});
+  clientes.belongsTo(usuarios, { as: "id_usuario_usuario", foreignKey: "id_usuario"});
+  usuarios.hasOne(clientes, { as: "cliente", foreignKey: "id_usuario"});
 
   return {
     clientes,
@@ -37,6 +41,7 @@ function initModels(sequelize) {
     marcas,
     metodospagos,
     productos,
+    usuarios,
   };
 }
 module.exports = initModels;

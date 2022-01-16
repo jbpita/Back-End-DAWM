@@ -5,12 +5,21 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var productosRouter = require('./routes/productos');
-var marcasRouter = require('./rotes/marcas');
+var marcasRouter = require('./routes/marcas');
+var loginRouter = require('./routes/login');
+
 var cors = require('cors');
+var cookieSession = require('cookie-session');
 
 var app = express();
 app.use(cors());
-
+app.use(cookieSession({
+    name: 'session',
+    keys: ['DAWM'],
+    
+    // Cookie Options
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+    }))
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -21,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/productos', productosRouter);
 app.use('/marcas' , marcasRouter); 
+app.use('/login' , loginRouter); 
 
 
 module.exports = app;
