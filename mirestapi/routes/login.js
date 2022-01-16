@@ -19,14 +19,13 @@ router.post('/', async (req, res, next) => {
   if(user){
     const iguales = bcrypt.compareSync(req.body.password, user.password);
     if(iguales){
-      res.json({success:createToken(user)})
+      res.json({message:'OK', success:createToken(user),role: user.rol})
     }else{
       res.json({ error :'Error en usuario y/o contraseña '})
     }
   }else{
     res.json({ error :'Error en usuario y/o contraseña '})
   }
-  res.send('respond with a resource');
 });
 
 const createToken = (user) => {
