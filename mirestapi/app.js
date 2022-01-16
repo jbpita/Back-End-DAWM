@@ -7,6 +7,10 @@ var indexRouter = require('./routes/index');
 var productosRouter = require('./routes/productos');
 var marcasRouter = require('./routes/marcas');
 var loginRouter = require('./routes/login');
+var comprasRouter = require('./routes/compras');
+var detalleComprasRouter = require('./routes/detallecompra');
+var clienteRouter = require('./routes/cliente');
+var metodosPagosRouter = require('./routes/metodospagos');
 
 var cors = require('cors');
 var cookieSession = require('cookie-session');
@@ -31,6 +35,10 @@ app.use('/', indexRouter);
 app.use('/productos', productosRouter);
 app.use('/marcas' , marcasRouter); 
 app.use('/login' , loginRouter); 
+app.use('/compras' , comprasRouter);
+app.use('/clientes' , clienteRouter);
+app.use('/detallecompras' , detalleComprasRouter);
+app.use('/metodospagos' , metodosPagosRouter);
 
 
 module.exports = app;

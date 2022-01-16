@@ -20,6 +20,7 @@ module.exports = {
       id_compra: {
         type: Sequelize.INTEGER,
         allowNull: true,
+        onDelete: "CASCADE",
         references: {
           model: 'compras',
           key: 'id_compra'
@@ -28,6 +29,7 @@ module.exports = {
       id_producto: {
         type: Sequelize.INTEGER,
         allowNull: true,
+        onDelete: "CASCADE",
         references: {
           model: 'productos',
           key: 'id_producto'

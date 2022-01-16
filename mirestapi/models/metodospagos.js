@@ -7,7 +7,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       primaryKey: true
     },
-    tipo_pago: {
+    tipo_pago:   {
       type: DataTypes.STRING(50),
       allowNull: true
     },
