@@ -35,6 +35,20 @@ router.get('/:id_producto', (req, res, next) => {
          })
     .catch(error => res.status(400).send(error));      
 });
+//busqueda de producto por marca
+router.get('/marca/:id_marca', (req, res, next) => {
+    let id_marca = req.params.id_marca;
+
+    models.productos.findAll({ 
+        include: { model: models.marcas },
+        attributes: { exclude: ["updatedAt"] },
+        where : { id_marca : id_marca }
+    })
+    .then(productos => {
+            res.send(productos)
+         })
+    .catch(error => res.status(400).send(error));      
+});
 
 
 /* POST : Ingresar producto */
