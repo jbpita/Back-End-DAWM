@@ -24,8 +24,8 @@ function initModels(sequelize) {
   clientes.hasMany(contactos, { as: "contactos", foreignKey: "id_cliente"});
   detallecompras.belongsTo(compras, { as: "id_compra_compra", foreignKey: "id_compra"});
   compras.hasMany(detallecompras, { as: "detallecompras", foreignKey: "id_compra"});
-  productos.belongsTo(marcas, { as: "id_marca_marca", foreignKey: "id_marca"});
-  marcas.hasMany(productos, { as: "productos", foreignKey: "id_marca"});
+  productos.belongsTo(marcas, {foreignKey: "id_marca", targetKey: "id_marca"});
+  marcas.hasMany(productos, {foreignKey: "id_marca", targetKey: "id_marca"});
   compras.belongsTo(metodospagos, { as: "id_metodo_metodospago", foreignKey: "id_metodo"});
   metodospagos.hasOne(compras, { as: "compra", foreignKey: "id_metodo"});
   detallecompras.belongsTo(productos, { as: "id_producto_producto", foreignKey: "id_producto"});

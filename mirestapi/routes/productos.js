@@ -11,8 +11,9 @@ var models= initModels(Sequelize)
 const middlewares = require('../midleware/midleware')
 
 /* GET home page. */
-router.get('/',middlewares.checkToken, (req, res, next) => {
+router.get('/', (req, res, next) => {
     models.productos.findAll({ 
+        include: { model: models.marcas },
         attributes: { exclude: ["updatedAt"] }
     })
     .then(productos => {

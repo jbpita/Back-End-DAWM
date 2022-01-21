@@ -21,10 +21,10 @@ router.post('/', async (req, res, next) => {
     if(iguales){
       res.json({message:'OK', success:createToken(user),role: user.rol})
     }else{
-      res.json({ error :'Error en usuario y/o contraseña '})
+      res.status(400).json({ error :'Error en usuario y/o contraseña '})
     }
   }else{
-    res.json({ error :'Error en usuario y/o contraseña '})
+    res.status(400).json({ error :'Error en usuario y/o contraseña '})
   }
 });
 
