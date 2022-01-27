@@ -103,7 +103,37 @@ router.post('/', async (req , res , next) => {
     }
     
 });
+/* PUT :  Actualizar el registro de un producto */
+router.put('/:id_producto' , async (req , res , next) => {
+    let id_producto = req.params.id_producto;
+    let stock = req.body.stock;
+    try{
+        
+        let producto = await models.productos.update(
+                {   
+                    stock : stock,
+                },
+                {   where : {   id_producto : id_producto   }   }
+            );
 
+
+        if(producto){
+            console.log("producto actualizado : " , producto);
+            res.send(producto);
+        } else {
+            console.log("producto no puedo ser actualizado " , producto);
+            res.status(401).json({
+                message: 'producto no puedo ser actualizado!',
+                content: producto
+            });
+        }
+
+        
+
+    }catch(error){
+        res.status(400).send(error);
+    }
+})
 /* PUT :  Actualizar el registro de un producto */
 router.put('/' , async (req , res , next) => {
     let id_producto = req.body.id_producto;

@@ -28,7 +28,7 @@ router.post('/' , async (req , res , next) => {
 
     try{
 
-        let metodo_pago = await models.metodospagos(
+        let metodo_pago = await models.metodospagos.create(
                 {   
                     tipo_pago : tipo_pago,
                     cvv : cvv,
@@ -42,10 +42,7 @@ router.post('/' , async (req , res , next) => {
 
         console.log("metodo de pago creado con exito: " , metodo_pago);
 
-        res.status(201).json({
-            message : 'Seregistro el metodo de pago para la compra!',
-            content : metodo_pago
-        });
+        res.send(metodo_pago);
 
     }catch(error){
         res.status(400).send(error);

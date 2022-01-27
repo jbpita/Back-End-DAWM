@@ -51,30 +51,12 @@ router.get('/:id_compra' , async (req , res , next) => {
 
 /* POST : registro de producto de la compra , detalle de compra */
 
-router.post('/' , async (req , re , next) => {
+router.post('/' , async (req , res , next) => {
     let cantidad = req.body.cantidad;
     let total = req.body.total;
     let id_compra = req.body.id_compra;
     let id_producto =  req.body.id_producto;
-    
-    if(!isNaN(id_compra)){
-        id_compra = Number(id_compra);
-    }
-
-    if(!isNaN(id_producto)){
-        id_producto = Number(id_producto);
-    }
-
-    if(!isNaN(cantidad)){
-        cantidad = Number(cantidad);
-    }
-
-    if(!isNaN(total)){
-        total = Number(total);
-    }
-
     try{
-
         let producto = await models.productos.findAll({
             attributes : { exclude: ["updatedAt"] },
             where : { id_producto : id_producto }
@@ -85,25 +67,22 @@ router.post('/' , async (req , re , next) => {
             where : { id_compra : id_compra }
         });
 
-        if(producto.length === 0 && compra.length === 0){
-            console.log("la compra y/o el producto no estan registrado ");
-            res.status(400).send("la compra y/o el producto no estan registrado");
-        }else{
+        if(producto && compra){
             let detalleCompra = await models.detallecompras.create(
                 {
-                    cantidad ,
-                    total ,
-                    id_compra ,
-                    id_producto 
+                    cantidad: cantidad ,
+                    total: total ,
+                    id_compra: id_compra ,
+                    id_producto: id_producto 
                 },
                 { fields : [ "cantidad" , "total" , "id_compra" , "id_producto" ] }
                 ) 
 
             console.log("se registro correptamente el producto en la compra ");
-            res.status(400).json({
-                message : "se registro correptamente el producto en la compra",
-                content : detalleCompra
-            });
+            res.send(detalleCompra);
+        }else{
+            console.log("la compra y/o el producto no estan registrado ");
+            res.status(400).send("la compra y/o el producto no estan registrado");  
         }
 
 

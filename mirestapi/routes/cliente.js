@@ -21,7 +21,19 @@ router.get('/' , (req , res , next) => {
         res.status(400).send(error);
     });
 });
+// Recuperar cliente por id usuario
+router.get('/:id_usuario', (req, res, next) => {
+    let id_usuario = req.params.id_usuario;
 
+    models.clientes.findAll({ 
+        attributes: { exclude: ["updatedAt"] },
+        where : { id_usuario : id_usuario }
+    })
+    .then(clientes => {
+            res.send(clientes)
+         })
+    .catch(error => res.status(400).send(error));      
+});
 /* POST : Registrar un cliente */
 router.post('/' , async (req , res , next) => {
     let cedula = req.body.cedula;

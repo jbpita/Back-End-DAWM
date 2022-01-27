@@ -49,22 +49,19 @@ router.post('/' , async (req , res , next) => {
             where: {id_metodo : id_metodo}
         });
 
-        if(cliente.length > 0 && metodo.length > 0){
+        if(cliente && metodo ){
             let compra = await models.compras.create({
                 fecha_compra : fecha_compra,
                 total : total,
                 id_cliente : id_cliente,
                 id_metodo : id_metodo
             },
-            {   fields : ['fecha_compra' , 'total' , 'id_cliente' , 'id_metod'] }
+            {   fields : ['fecha_compra' , 'total' , 'id_cliente' , 'id_metodo'] }
             );
 
             console.log('compra: ' , compra);
 
-            res.status(201).json({
-                message: 'Se registro la compra correctamente!',
-                content: compra
-            });
+            res.send(compra);
         }else{
             res.status(404).send('Error: recurso no existe');
         }
