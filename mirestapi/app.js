@@ -11,9 +11,11 @@ var comprasRouter = require('./routes/compras');
 var detalleComprasRouter = require('./routes/detallecompra');
 var clienteRouter = require('./routes/cliente');
 var metodosPagosRouter = require('./routes/metodospagos');
+var correoRouter = require('./routes/correo')
 
 var cors = require('cors');
 var cookieSession = require('cookie-session');
+
 
 var app = express();
 app.use(cors());
@@ -39,6 +41,7 @@ app.use('/compras' , comprasRouter);
 app.use('/clientes' , clienteRouter);
 app.use('/detallecompras' , detalleComprasRouter);
 app.use('/metodospagos' , metodosPagosRouter);
+app.use('/correo', correoRouter);
 
 
 module.exports = app;
