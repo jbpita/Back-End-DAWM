@@ -19,12 +19,15 @@ router.post('/', async (req, res, next) => {
   if(user){
     const iguales = bcrypt.compareSync(req.body.password, user.password);
     if(iguales){
-      res.json({message:'OK', success:createToken(user),role: user.rol})
+      const cliente = await models.clientes.findOne({
+        where: { id_usuario : user.id_usuario}
+      })
+      res.json({message:'OK', success:createToken(user),role: user.rol,id_usuario: cliente.id_cliente,correoCliente:user.correo})
     }else{
-      res.json({ error :'Error en usuario y/o contraseña '})
+      res.status(400).json({ error :'Error en usuario y/o contraseña '})
     }
   }else{
-    res.json({ error :'Error en usuario y/o contraseña '})
+    res.status(400).json({ error :'Error en usuario y/o contraseña '})
   }
 });
 

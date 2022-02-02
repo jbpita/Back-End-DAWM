@@ -9,6 +9,12 @@ module.exports = {
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
      await queryInterface.createTable('detallecompras', {
+      id_detalleCompra: {
+        autoIncrement: true,
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        primaryKey: true
+      },
       cantidad: {
         type: Sequelize.INTEGER,
         allowNull: true

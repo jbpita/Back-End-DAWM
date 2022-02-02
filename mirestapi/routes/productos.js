@@ -11,8 +11,9 @@ var models= initModels(Sequelize)
 const middlewares = require('../midleware/midleware')
 
 /* GET home page. */
-router.get('/',middlewares.checkToken, (req, res, next) => {
+router.get('/', (req, res, next) => {
     models.productos.findAll({ 
+        include: { model: models.marcas },
         attributes: { exclude: ["updatedAt"] }
     })
     .then(productos => {
@@ -28,6 +29,20 @@ router.get('/:id_producto', (req, res, next) => {
     models.productos.findAll({ 
         attributes: { exclude: ["updatedAt"] },
         where : { id_producto : id_producto }
+    })
+    .then(productos => {
+            res.send(productos)
+         })
+    .catch(error => res.status(400).send(error));      
+});
+//busqueda de producto por marca
+router.get('/marca/:id_marca', (req, res, next) => {
+    let id_marca = req.params.id_marca;
+
+    models.productos.findAll({ 
+        include: { model: models.marcas },
+        attributes: { exclude: ["updatedAt"] },
+        where : { id_marca : id_marca }
     })
     .then(productos => {
             res.send(productos)
@@ -88,7 +103,37 @@ router.post('/', async (req , res , next) => {
     }
     
 });
+/* PUT :  Actualizar el registro de un producto */
+router.put('/:id_producto' , async (req , res , next) => {
+    let id_producto = req.params.id_producto;
+    let stock = req.body.stock;
+    try{
+        
+        let producto = await models.productos.update(
+                {   
+                    stock : stock,
+                },
+                {   where : {   id_producto : id_producto   }   }
+            );
 
+
+        if(producto){
+            console.log("producto actualizado : " , producto);
+            res.send(producto);
+        } else {
+            console.log("producto no puedo ser actualizado " , producto);
+            res.status(401).json({
+                message: 'producto no puedo ser actualizado!',
+                content: producto
+            });
+        }
+
+        
+
+    }catch(error){
+        res.status(400).send(error);
+    }
+})
 /* PUT :  Actualizar el registro de un producto */
 router.put('/' , async (req , res , next) => {
     let id_producto = req.body.id_producto;
@@ -99,6 +144,8 @@ router.put('/' , async (req , res , next) => {
     let src = req.body.src;
     let id_marca = req.body.id_marca;
 
+
+
     if(!isNaN(id_marca)){
         id_marca = Number(id_marca)
     }
@@ -107,17 +154,29 @@ router.put('/' , async (req , res , next) => {
         id_producto = Number(id_producto);
     }
 
+    let pdt = {
+        nombre : nombre,
+        precio : precio,
+        detalle: detalle,
+        stock : stock,
+        src : src,
+        id_marca : id_marca
+    }
+
+    if(src == null || src == "" || src == undefined){
+        pdt = {
+            nombre : nombre,
+            precio : precio,
+            detalle: detalle,
+            stock : stock,
+            id_marca : id_marca
+        }
+    }
+
     try{
         
         let producto = await models.productos.update(
-                {   
-                    nombre : nombre,
-                    precio : precio,
-                    detalle: detalle,
-                    stock : stock,
-                    src : src,
-                    id_marca : id_marca
-                },
+                pdt,
                 {   where : {   id_producto : id_producto   }   }
             );
 

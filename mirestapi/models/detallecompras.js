@@ -1,9 +1,15 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('detallecompras', {
+    id_detalleCompra: {
+      autoIncrement: true,
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true
+    },
     cantidad: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
     },
     total: {
       type: DataTypes.FLOAT,
