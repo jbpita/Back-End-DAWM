@@ -9,6 +9,19 @@ const initModels = require('../models/init-models');
 
 var models= initModels(Sequelize)
 const middlewares = require('../midleware/midleware')
+const multer = require('multer');
+
+
+var models= initModels(Sequelize)
+const storage = multer.diskStorage({
+    destination: (req, file, callBack) => {
+        callBack(null, 'uploads')
+    },
+    filename: (req, file, callBack) => {
+        callBack(null, file.originalname)
+    }
+})
+const upload = multer({ storage: storage })
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -53,12 +66,12 @@ router.get('/marca/:id_marca', (req, res, next) => {
 
 /* POST : Ingresar producto */
 
-router.post('/', async (req , res , next) => {
+router.post('/', upload.single('file'), async (req , res , next) => {
     let nombre = req.body.nombre;
     let precio = req.body.precio;
     let detalle = req.body.detalle;
     let stock = req.body.stock;
-    let src = req.body.src;
+    let file = req.file;
     let id_marca = req.body.id_marca;
 
     if(!isNaN(id_marca)){
@@ -71,7 +84,7 @@ router.post('/', async (req , res , next) => {
             where: {id_marca : id_marca}
         });
 
-        if(marca.length === 0 ){
+        if(!marca){
             console.log("marca no existe");
             res.status(404).send("Error: recurso no existe");
 
@@ -83,7 +96,7 @@ router.post('/', async (req , res , next) => {
                 precio : precio,
                 detalle: detalle,
                 stock : stock,
-                src : src,
+                src : file.path,
                 id_marca : id_marca
             },
             {   fields : ['nombre' , 'precio' , 'detalle' , 'stock' , 'src' , 'id_marca'] }
