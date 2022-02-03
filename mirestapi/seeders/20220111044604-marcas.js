@@ -20,7 +20,7 @@ module.exports = {
       id_marca:2,
       nombre: 'DACAR',
       descripcion: 'Tecnologías de punta, actuales en el ámbito de las baterías, con lo que se producen mayores cantidades de energía',
-      src: "https://static.frecuento.com//medias/40367188-02-BASEIMAGE-Midres?context=bWFzdGVyfGZyZWN1ZW50b3w2MjYzNDB8aW1hZ2UvanBlZ3xmcmVjdWVudG8vaGIwL2g2MC85MTAzOTExNjE2NTQyLmpwZ3wyMmNkYmQ1MTc5OTZiNDEyMzA4NGY1NzFjOGZhMTMwZTA1NjM4Mjk5YzU5N2YwOWQ4MDVmYmMyZTUwMWNlMTY2",
+      src: "https://www.ferrisariato.com/wp-content/uploads/2020/07/40356860_02-1.jpg",
     },
     {
       id_marca:3,
