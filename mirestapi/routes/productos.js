@@ -157,6 +157,8 @@ router.put('/' , async (req , res , next) => {
     let src = req.body.src;
     let id_marca = req.body.id_marca;
 
+
+
     if(!isNaN(id_marca)){
         id_marca = Number(id_marca)
     }
@@ -165,17 +167,29 @@ router.put('/' , async (req , res , next) => {
         id_producto = Number(id_producto);
     }
 
+    let pdt = {
+        nombre : nombre,
+        precio : precio,
+        detalle: detalle,
+        stock : stock,
+        src : src,
+        id_marca : id_marca
+    }
+
+    if(src == null || src == "" || src == undefined){
+        pdt = {
+            nombre : nombre,
+            precio : precio,
+            detalle: detalle,
+            stock : stock,
+            id_marca : id_marca
+        }
+    }
+
     try{
         
         let producto = await models.productos.update(
-                {   
-                    nombre : nombre,
-                    precio : precio,
-                    detalle: detalle,
-                    stock : stock,
-                    src : src,
-                    id_marca : id_marca
-                },
+                pdt,
                 {   where : {   id_producto : id_producto   }   }
             );
 
