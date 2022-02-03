@@ -27,6 +27,8 @@ app.use(cookieSession({
     maxAge: 24 * 60 * 60 * 1000 // 24 hours
     }))
 
+    
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

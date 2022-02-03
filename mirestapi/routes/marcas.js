@@ -6,8 +6,19 @@ const Sequelize = require('../models/index.js').sequelize;
 
 const initModels = require('../models/init-models');
 
-
 var models= initModels(Sequelize)
+
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+    destination: (req, file, callBack) => {
+        callBack(null, 'uploads')
+    },
+    filename: (req, file, callBack) => {
+        callBack(null, file.originalname)
+    }
+})
+const upload = multer({ storage: storage })
 
 /* GET : consultar marcas */
 router.get('/', (req, res, next) => {
@@ -38,16 +49,18 @@ router.get('/:id_marca', (req, res, next) => {
 
 /* POST : Ingresar marca */
 
-router.post('/', async (req , res , next) => {
+router.post('/', upload.single('file') ,async (req , res , next) => {
     let nombre = req.body.nombre;
     let descripcion = req.body.descripcion;
-    let src = req.body.src;
+    let file = req.file;
+
+    console.log(file);
 
     try{
         let marca = await models.marcas.create({
             nombre : nombre,
             descripcion: descripcion,
-            src : src,
+            src : file.path
         },
         {   fields : ['nombre' , 'descripcion' , 'src'] }
         );
